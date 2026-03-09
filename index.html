@@ -313,6 +313,7 @@
 
         // ── Map setup ──────────────────────────────────────────────
         const hashParams = getHashParams();
+        const hasInitialHash = !!hashParams;
         const map = L.map('map', {
             center: hashParams ? [hashParams.lat, hashParams.lng] : [45.42, 6.75],
             zoom: hashParams ? hashParams.z : 12,
@@ -500,8 +501,8 @@
 
                 zonesGroup.addTo(map);
 
-                // Center on zones (only if no hash in URL)
-                if (count > 0 && !getHashParams()) {
+                // Center on zones (only if no hash in URL at startup)
+                if (count > 0 && !hasInitialHash) {
                     const center = zonesGroup.getBounds().getCenter();
                     map.setView(center, 14);
                 }
