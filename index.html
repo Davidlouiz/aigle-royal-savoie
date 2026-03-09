@@ -300,8 +300,8 @@
     <script>
         // ── Map setup ──────────────────────────────────────────────
         const map = L.map('map', {
-            center: [45.45, 6.6],
-            zoom: 10,
+            center: [45.42, 6.75],
+            zoom: 12,
             zoomControl: true,
             maxZoom: 17,
             minZoom: 8
@@ -477,9 +477,10 @@
 
                 zonesGroup.addTo(map);
 
-                // Fit map to zones
+                // Center on zones without zooming out
                 if (count > 0) {
-                    map.fitBounds(zonesGroup.getBounds(), { padding: [30, 30], maxZoom: 12 });
+                    const center = zonesGroup.getBounds().getCenter();
+                    map.setView(center, 12);
                 }
 
                 // Update counter
