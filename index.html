@@ -385,10 +385,11 @@
         }
 
         // ── Fetch and parse KML ───────────────────────────────────
+        const KML_SOURCE = 'https://domlibs.fr/ar73/aires_actives_bulles.kml';
         const KML_URLS = [
-            'aires_actives_bulles.kml',                                              // local copy
-            'https://domlibs.fr/ar73/aires_actives_bulles.kml',                      // direct (if CORS allowed)
-            'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://domlibs.fr/ar73/aires_actives_bulles.kml') // CORS proxy
+            KML_SOURCE,                                                              // direct (if CORS allowed)
+            'https://api.allorigins.win/raw?url=' + encodeURIComponent(KML_SOURCE),  // CORS proxy 1
+            'https://corsproxy.io/?' + encodeURIComponent(KML_SOURCE),               // CORS proxy 2
         ];
 
         async function fetchKML() {
