@@ -325,11 +325,19 @@
         function updateHash() {
             const c = map.getCenter();
             const z = map.getZoom();
-            window.location.hash = `${z}/${c.lat.toFixed(5)}/${c.lng.toFixed(5)}`;
+            const newHash = `#${z}/${c.lat.toFixed(5)}/${c.lng.toFixed(5)}`;
+            if (window.location.hash !== newHash) {
+                history.replaceState(null, '', newHash);
+            }
         }
 
         map.on('moveend', updateHash);
         map.on('zoomend', updateHash);
+        // Also update periodically to catch edge cases
+        map.on('move', function() {
+            clearTimeout(map._hashTimeout);
+            map._hashTimeout = setTimeout(updateHash, 300);
+        });
 
         // Base layers
         const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
