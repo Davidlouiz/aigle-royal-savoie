@@ -311,12 +311,6 @@
             return null;
         }
 
-        function updateHash() {
-            const c = map.getCenter();
-            const z = map.getZoom();
-            history.replaceState(null, '', `#${z}/${c.lat.toFixed(5)}/${c.lng.toFixed(5)}`);
-        }
-
         // ── Map setup ──────────────────────────────────────────────
         const hashParams = getHashParams();
         const map = L.map('map', {
@@ -326,6 +320,12 @@
             maxZoom: 17,
             minZoom: 8
         });
+
+        function updateHash() {
+            const c = map.getCenter();
+            const z = map.getZoom();
+            window.location.hash = `${z}/${c.lat.toFixed(5)}/${c.lng.toFixed(5)}`;
+        }
 
         map.on('moveend', updateHash);
         map.on('zoomend', updateHash);
