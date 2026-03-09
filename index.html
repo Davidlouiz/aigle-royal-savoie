@@ -479,7 +479,7 @@
 
                 // Fit map to zones
                 if (count > 0) {
-                    map.fitBounds(zonesGroup.getBounds(), { padding: [30, 30] });
+                    map.fitBounds(zonesGroup.getBounds(), { padding: [30, 30], maxZoom: 12 });
                 }
 
                 // Update counter
