@@ -298,14 +298,37 @@
             crossorigin=""></script>
 
     <script>
+        // ── URL hash ↔ map position ───────────────────────────────
+        function getHashParams() {
+            const hash = window.location.hash.replace('#', '');
+            const parts = hash.split('/');
+            if (parts.length === 3) {
+                const z = parseInt(parts[0], 10);
+                const lat = parseFloat(parts[1]);
+                const lng = parseFloat(parts[2]);
+                if (!isNaN(z) && !isNaN(lat) && !isNaN(lng)) return { z, lat, lng };
+            }
+            return null;
+        }
+
+        function updateHash() {
+            const c = map.getCenter();
+            const z = map.getZoom();
+            history.replaceState(null, '', `#${z}/${c.lat.toFixed(5)}/${c.lng.toFixed(5)}`);
+        }
+
         // ── Map setup ──────────────────────────────────────────────
+        const hashParams = getHashParams();
         const map = L.map('map', {
-            center: [45.42, 6.75],
-            zoom: 12,
+            center: hashParams ? [hashParams.lat, hashParams.lng] : [45.42, 6.75],
+            zoom: hashParams ? hashParams.z : 12,
             zoomControl: true,
             maxZoom: 17,
             minZoom: 8
         });
+
+        map.on('moveend', updateHash);
+        map.on('zoomend', updateHash);
 
         // Base layers
         const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -477,8 +500,8 @@
 
                 zonesGroup.addTo(map);
 
-                // Center on zones without zooming out
-                if (count > 0) {
+                // Center on zones (only if no hash in URL)
+                if (count > 0 && !getHashParams()) {
                     const center = zonesGroup.getBounds().getCenter();
                     map.setView(center, 14);
                 }
