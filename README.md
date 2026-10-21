@@ -3,6 +3,8 @@
 Carte interactive des **bulles de quiétude** autour des aires actives de l'aigle royal en Savoie.
 Chaque aire est matérialisée par une zone tampon d'environ 400 m de rayon, retouchée pour tenir compte du relief et des circulations des oiseaux.
 
+![Aperçu de la carte — aire du Roc de la Valette, Pralognan-la-Vanoise](./docs/preview.png)
+
 🔗 **Démo en ligne** : <https://davidlouiz.github.io/aigle-royal-savoie/>
 
 ## ✨ Fonctionnalités
@@ -32,7 +34,10 @@ Projet **sans framework ni étape de build** : une seule page HTML autonome.
 
 ```
 .
-└── index.html   # application complète (HTML + CSS + JS)
+├── index.html                    # application complète (HTML + CSS + JS)
+├── aires_actives_bulles.kml      # copie locale des zones (repli hors CORS)
+└── docs/
+    └── preview.png               # capture d'écran utilisée dans ce README
 ```
 
 ## 🚀 Lancer en local
