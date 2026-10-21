@@ -422,12 +422,13 @@
             KML_SOURCE,                                                              // direct (if CORS allowed)
             'https://api.allorigins.win/raw?url=' + encodeURIComponent(KML_SOURCE),  // CORS proxy 1
             'https://corsproxy.io/?' + encodeURIComponent(KML_SOURCE),               // CORS proxy 2
+            'aires_actives_bulles.kml',                                              // copie locale (même origine, toujours disponible)
         ];
 
         async function fetchKML() {
             for (const url of KML_URLS) {
                 try {
-                    const r = await fetch(url);
+                    const r = await fetch(url, { signal: AbortSignal.timeout(5000) });
                     if (r.ok) return await r.text();
                 } catch (_) { /* try next */ }
             }
