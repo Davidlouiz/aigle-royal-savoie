@@ -3,7 +3,7 @@
 Carte interactive des **bulles de quiétude** autour des aires actives de l'aigle royal en Savoie.
 Chaque aire est matérialisée par une zone tampon d'environ 400 m de rayon, retouchée pour tenir compte du relief et des circulations des oiseaux.
 
-![Aperçu de la carte — aire du Roc de la Valette, Pralognan-la-Vanoise](./docs/preview.png)
+![Aperçu de la carte — aire des gorges de Ponserand, couple de la Coche](./docs/preview.png)
 
 🔗 **Démo en ligne** : <https://davidlouiz.github.io/aigle-royal-savoie/>
 
