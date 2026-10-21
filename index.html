@@ -419,10 +419,8 @@
         // ── Fetch and parse KML ───────────────────────────────────
         const KML_SOURCE = 'https://domlibs.fr/ar73/aires_actives_bulles.kml';
         const KML_URLS = [
-            KML_SOURCE,                                                              // direct (if CORS allowed)
-            'https://api.allorigins.win/raw?url=' + encodeURIComponent(KML_SOURCE),  // CORS proxy 1
-            'https://corsproxy.io/?' + encodeURIComponent(KML_SOURCE),               // CORS proxy 2
-            'aires_actives_bulles.kml',                                              // copie locale (même origine, toujours disponible)
+            KML_SOURCE,                       // direct (si la source autorise un jour le CORS)
+            'aires_actives_bulles.kml',       // copie locale (même origine, toujours disponible)
         ];
 
         async function fetchKML() {

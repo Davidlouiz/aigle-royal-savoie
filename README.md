@@ -55,8 +55,7 @@ Les zones proviennent du fichier KML public :
 https://domlibs.fr/ar73/aires_actives_bulles.kml
 ```
 
-Il est tenté directement, puis via `api.allorigins.win` et `corsproxy.io` en cas de blocage CORS.
-Ces deux proxys étant peu fiables et la source ne renvoyant pas d'en-tête `Access-Control-Allow-Origin`, une **copie locale** ([`aires_actives_bulles.kml`](./aires_actives_bulles.kml)) sert de dernier recours : la carte fonctionne toujours, même hors proxy.
+La source ne renvoie pas d'en-tête `Access-Control-Allow-Origin`, le chargement direct depuis le navigateur est donc bloqué. Une **copie locale** ([`aires_actives_bulles.kml`](./aires_actives_bulles.kml)) sert de repli : la carte fonctionne toujours. Les proxys CORS publics initialement prévus (`api.allorigins.win`, `corsproxy.io`) ont été retirés, ils sont hors service (522 / 403) et ajoutaient plusieurs secondes de chargement.
 
 ### Mettre à jour les données
 
